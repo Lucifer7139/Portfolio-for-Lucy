@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucy Any - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            color: white;
+            font-weight: bold;
+            animation: pulse 2s infinite;
+        }
+
+        .name {
+            font-size: 3em;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.3em;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(102, 126, 234, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .sections {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .section h2 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+        }
+
+        .subject-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .subject-card {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .subject-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .skill-bar {
+            margin-bottom: 20px;
+        }
+
+        .skill-name {
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .skill-progress {
+            height: 10px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .skill-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 5px;
+            transition: width 2s ease-in-out;
+            animation: fillBar 2s ease-in-out;
+        }
+
+        .achievement {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border-left: 4px solid #ff6b6b;
+        }
+
+        .goal {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border-left: 4px solid #667eea;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes fillBar {
+            from {
+                width: 0%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .name {
+                font-size: 2.5em;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .sections {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="profile-img">LA</div>
+            <h1 class="name">Lucy Any</h1>
+            <p class="subtitle">Year 12 Student | Future Leader</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span>📧</span>
+                    <span>lucy.any@email.com</span>
+                </div>
+                <div class="contact-item">
+                    <span>📱</span>
+                    <span>+61 XXX XXX XXX</span>
+                </div>
+                <div class="contact-item">
+                    <span>📍</span>
+                    <span>Australia</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="sections">
+            <div class="section">
+                <h2>
+                    <div class="section-icon">📚</div>
+                    Current Studies
+                </h2>
+                <div class="subject-grid">
+                    <div class="subject-card">
+                        <h3>Legal Studies</h3>
+                        <p>Understanding law, justice, and legal systems</p>
+                    </div>
+                    <div class="subject-card">
+                        <h3>Psychology</h3>
+                        <p>Exploring human behavior and mental processes</p>
+                    </div>
+                    <div class="subject-card">
+                        <h3>English</h3>
+                        <p>Developing communication and analytical skills</p>
+                    </div>
+                    <div class="subject-card">
+                        <h3>Mathematics</h3>
+                        <p>Problem-solving and logical reasoning</p>
+                    </div>
+                    <div class="subject-card">
+                        <h3>Sport & Recreation</h3>
+                        <p>Health, fitness, and team leadership</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>
+                    <div class="section-icon">⭐</div>
+                    Key Skills
+                </h2>
+                <div class="skill-bar">
+                    <div class="skill-name">
+                        <span>Analytical Thinking</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="skill-progress">
+                        <div class="skill-fill" style="width: 90%"></div>
+                    </div>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-name">
+                        <span>Written Communication</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="skill-progress">
+                        <div class="skill-fill" style="width: 85%"></div>
+                    </div>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-name">
+                        <span>Research & Investigation</span>
+                        <span>88%</span>
+                    </div>
+                    <div class="skill-progress">
+                        <div class="skill-fill" style="width: 88%"></div>
+                    </div>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-name">
+                        <span>Teamwork & Leadership</span>
+                        <span>92%</span>
+                    </div>
+                    <div class="skill-progress">
+                        <div class="skill-fill" style="width: 92%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>
+                    <div class="section-icon">🏆</div>
+                    Achievements
+                </h2>
+                <div class="achievement">
+                    <h3>Academic Excellence</h3>
+                    <p>Maintaining high grades across all subjects with consistent effort and dedication to learning.</p>
+                </div>
+                <div class="achievement">
+                    <h3>Leadership in Sport</h3>
+                    <p>Demonstrating leadership skills through sport and recreation activities, inspiring teammates and peers.</p>
+                </div>
+                <div class="achievement">
+                    <h3>Critical Thinking</h3>
+                    <p>Developing strong analytical skills through legal studies and psychology coursework.</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>
+                    <div class="section-icon">🎯</div>
+                    Future Goals
+                </h2>
+                <div class="goal">
+                    <h3>University Preparation</h3>
+                    <p>Successfully complete Year 12 with strong ATAR results to pursue higher education opportunities.</p>
+                </div>
+                <div class="goal">
+                    <h3>Career Development</h3>
+                    <p>Explore career paths in law, psychology, or sports management based on current interests and studies.</p>
+                </div>
+                <div class="goal">
+                    <h3>Skill Enhancement</h3>
+                    <p>Continue developing analytical, communication, and leadership skills for future success.</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>
+                    <div class="section-icon">💡</div>
+                    About Me
+                </h2>
+                <p style="margin-bottom: 15px;">
+                    I'm a dedicated Year 12 student with a passion for understanding how people think and behave, 
+                    while also having a strong interest in justice and legal systems. My diverse subject choices 
+                    reflect my curiosity about different aspects of human society and behavior.
+                </p>
+                <p style="margin-bottom: 15px;">
+                    Through Legal Studies and Psychology, I'm developing critical thinking skills and learning 
+                    to analyze complex situations from multiple perspectives. English enhances my communication 
+                    abilities, while Mathematics strengthens my problem-solving approach.
+                </p>
+                <p>
+                    Sport and Recreation keeps me balanced and teaches me valuable lessons about teamwork, 
+                    perseverance, and leadership that I apply to all areas of my life.
+                </p>
+            </div>
+
+            <div class="section">
+                <h2>
+                    <div class="section-icon">📈</div>
+                    Academic Focus Areas
+                </h2>
+                <div style="display: grid; gap: 15px;">
+                    <div style="background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%); padding: 15px; border-radius: 10px;">
+                        <h4>Legal Studies</h4>
+                        <p>Constitutional law, criminal justice, human rights, and legal reasoning</p>
+                    </div>
+                    <div style="background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%); padding: 15px; border-radius: 10px;">
+                        <h4>Psychology</h4>
+                        <p>Cognitive processes, social psychology, research methods, and human development</p>
+                    </div>
+                    <div style="background: linear-gradient(135deg, #fad0c4 0%, #ffd1ff 100%); padding: 15px; border-radius: 10px;">
+                        <h4>English</h4>
+                        <p>Literary analysis, creative writing, persuasive communication, and text interpretation</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate skill bars on load
+            const skillBars = document.querySelectorAll('.skill-fill');
+            skillBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 500);
+            });
+
+            // Add hover effects to subject cards
+            const subjectCards = document.querySelectorAll('.subject-card');
+            subjectCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.05) rotate(2deg)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1) rotate(0deg)';
+                });
+            });
+
+            // Stagger section animations
+            const sections = document.querySelectorAll('.section');
+            sections.forEach((section, index) => {
+                section.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
+    </script>
+</body>
+</html>
